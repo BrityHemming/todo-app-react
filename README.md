@@ -1,7 +1,7 @@
 # todo-app-react
 simple to do app
 
-### Understanding State
+## Understanding State
 
 - What is state?
     
@@ -14,7 +14,7 @@ simple to do app
     With react we keep our data in state and whenever state changes - react reacts to that change and it knows where that data is anywhere in the application and it will go and update all of that data on the website. 
     
 
-### Hooks
+## Hooks
 
 Hooks are functions that let you “hook into” React state and lifecycle features from function components. Hooks don’t work inside classes — they let you use React without classes. 
 
@@ -71,3 +71,23 @@ useEffect(() => {
 
 //To have the same result as componentDidMount() we can send an empty array. Knowing that an empty set does never change, the effect will run only once.
 ```
+
+## Forms
+
+HTML form elements work a bit differently from other DOM elements in React, because form elements naturally keep some internal state.
+
+This form has the default HTML form behaviour of browsing to a new page when the user submits the form. If you want this behaviour in React, it just works. But in most cases, it’s convenient to have a JavaScript function that handles the submission of the form and has access to the data that the user entered into the form. The standard way to achieve this is with a technique called “controlled components”.
+
+### value
+
+The `value` attribute is supported by `<input>`, `<select>` and `<textarea>` components. You can use it to set the value of the component. This is useful for building controlled components. `defaultValue` is the uncontrolled equivalent, which sets the value of the component when it is first mounted.
+
+### Controlled Components
+
+In HTML, form elements such as `<input>`, `<textarea>`, and `<select>` typically maintain their own state and update it based on user input. In React, mutable state is typically kept in the state property of components, and only updated with `[setState()](https://reactjs.org/docs/react-component.html#setstate)`
+
+We can combine the two by making the React state be the “single source of truth”. Then the React component that renders a form also controls what happens in that form on subsequent user input. An input form element whose value is controlled by React in this way is called a “controlled component”.
+
+`handleChange` runs on every keystroke to update the React state, the displayed value will update as the user types.
+
+With a controlled component, the input’s value is always driven by the React state. While this means you have to type a bit more code, you can now pass the value to other UI elements too, or reset it from other event handlers.
