@@ -1,19 +1,30 @@
 import './Task.css';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 
-
-
-function Task({todos, completeTodo}){
+function Task({todo, completeTodo}){
 
     const [isComplete, setIsComplete] = useState(false);
 
-    const handleComplete = event => {
+    // We need to use a useEffect hook to detect if
+    // the todo prop has changed so we can update the
+    // isComplete state variable.
+    useEffect(() => {
+      setIsComplete(todo.isComplete);
+    }, [todo]);
+
+    const handleChange = event => {
         if (event.target.checked) {
           console.log('✅ Checkbox is checked');
         } else {
           console.log('⛔️ Checkbox is NOT checked');
         }
         setIsComplete(current => !current);
+
+        // Call the parent component's completeTodo method
+        // so we're keeping the list of todos in state in sync
+        // with the checking and unchecking of the input element
+        // within each Task component.
+        completeTodo(todo.id);
       };
 
       /**Form code */
@@ -30,20 +41,20 @@ function Task({todos, completeTodo}){
     //       name="complete"
     //     />
     
-    return todos.map((item, index) => (
-      <div key={index.id} 
-      className={item.isComplete ? 'completed' : 'task'}>
-         <p className="text">{item.text}</p>
+    // The Task component should only be responsible 
+    // for rendering a single todo.
+    return (
+      <div className={todo.isComplete ? 'completed' : 'task'}>
+         <p className="text">{todo.text}</p>
+         {/* Set the input element's checked property instead of value */}
          <input
           type="checkbox"
-          value={isComplete}
-          onChange={handleComplete}
+          checked={isComplete}
+          onChange={handleChange}
           id="complete"
           name="complete"
-          key={item.id} 
-          onClick={() => completeTodo(item.id)}
         />
-        </div>));
+        </div>);
 }
 
 export default Task;
