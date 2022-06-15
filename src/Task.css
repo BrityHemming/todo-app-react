@@ -1,0 +1,33 @@
+.task{
+    border:2px solid black;
+    padding:2%;
+    text-align: left;
+    font-size:1.8rem;
+    width:50%;
+    margin:2% auto;
+    display:flex;
+    justify-content: space-between;
+    background-color:#FFFACD;
+}
+.checkbox{
+    width:5%;
+}
+.text{
+    width:50%;
+}
+.completed{
+    border:2px solid black;
+    padding:2%;
+    text-align: left;
+    font-size:1.8rem;
+    width:50%;
+    margin:2% auto;
+    display:flex;
+    justify-content: space-between;
+    text-decoration: line-through;
+    background-color:#9370DB;
+}
+
+input[type=checkbox]:checked{
+    accent-color: #FA9E57;
+}
